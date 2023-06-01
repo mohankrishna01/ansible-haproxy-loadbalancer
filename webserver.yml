@@ -1,0 +1,19 @@
+- hosts: web
+  tasks:
+    - name: "Installing Webserver !!"
+      package:
+        name: "httpd"
+        state: present
+    - name: "Installing PHP !!"
+      package:
+        name: "php"
+        state: present    
+    - name: "Copying Files"
+      copy:
+        src: "./webpage/index.php"
+        dest: "/var/www/html/"  
+    - name: "Starting Httpd Service"
+      service:
+        name: "httpd"
+        state: started
+        enabled: true      
