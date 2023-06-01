@@ -6,5 +6,7 @@ backend myweb
 	balance roundrobin
 	timeout connect 10s
 	timeout server 10s
-	server Server1 43.205.124.182:80
-	server Server2 43.205.124.183:80         
+{% for ip in groups['web'] %}	
+	server Server{{ loop.index }} {{ ip }}:80
+{% endfor %}
+	      
