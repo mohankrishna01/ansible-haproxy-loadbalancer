@@ -1,0 +1,15 @@
+- hosts:
+  tasks:
+  - name: "Installing Load Balancer [haproxy]"
+    package:
+      name: "haproxy"
+      state: present
+  - name: "Adding Server's to LoadBalancer"    
+    template:
+      src: "./LB_cfg/local.cfg.j2"
+      dest: "/etc/haproxy/haproxy.cfg"
+
+  - name: "Start the Service"    
+    service:
+      name: "haproxy"
+      state: restarted  
