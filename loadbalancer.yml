@@ -1,4 +1,4 @@
-- hosts:
+- hosts: LB
   tasks:
   - name: "Installing Load Balancer [haproxy]"
     package:
