@@ -1,12 +1,11 @@
 frontend lb
-	bind *:8080
+	bind *:80
 	timeout client 10s
 	default_backend myweb
 backend myweb
 	balance roundrobin
 	timeout connect 10s
 	timeout server 10s
-{% for ip in groups['web'] %}	
-	server Server{{ loop.index }} {{ ip }}:80
-{% endfor %}
+	server Server1 ec2-18-60-157-187.ap-south-2.compute.amazonaws.com:80
+	server Server2 ec2-18-61-202-158.ap-south-2.compute.amazonaws.com:80
 	      
